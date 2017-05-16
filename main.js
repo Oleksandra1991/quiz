@@ -20,15 +20,18 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
   .then(function(data){
     console.log(data)
     var letters = "ABCD";
+    var isChosen = [];
 
-    for (i=0; i < data.questions.length; i++) {
+    for (let i=0; i < data.questions.length; i++) {
       console.log(data.questions[i]);
       var questionAnswer = document.getElementById('question-answer');
       var quiz = document.createElement('div');
       questionAnswer.appendChild(quiz);
       quiz.className += 'question-answer__question';
       quiz.innerHTML += data.questions[i].question;
-      for (j=0; j < data.questions[i].answers.length; j++) {
+
+
+      for (let j=0; j < data.questions[i].answers.length; j++) {
         console.log(data.questions[i].answers[j]);
 
         var buttonAnswer = document.createElement('div');
@@ -39,6 +42,14 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
         buttonAnswer.appendChild(button);
         button.className += 'sg-button-secondary sg-button-secondary--small sg-button-secondary--dark-inverse question-answer__button';
         button.innerHTML += letters[j];
+        button.addEventListener('click', function(event){
+          if (isChosen[i]) {
+            return;
+          } else {
+          event.target.classList.toggle('button-check');
+          isChosen[i] = j;
+        }
+        });
 
         var answer = document.createElement('div');
         buttonAnswer.appendChild(answer);
@@ -46,4 +57,9 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
         answer.innerHTML += data.questions[i].answers[j].answer;
       }
     }
+    finishButton.addEventListener('click', function(){
+      for (let i = 0; i < data.questions.length; i++) {
+        data.questions[i].answers[isChosen[i]].correct;
+      }
+    })
   })

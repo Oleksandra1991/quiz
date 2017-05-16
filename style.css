@@ -16,9 +16,13 @@
 .text-bubble {
   width: 48%;
   margin: 0 auto;
-  margin-bottom: 100px;
   display: flex;
   color: #434e66;
+}
+@media screen and (min-width: 768px) {
+  .text-bubble {
+    margin-bottom: 100px;
+  }
 }
 .text-bubble--active {
   display: none;
@@ -29,6 +33,12 @@
     justify-content: center;
     margin: 50px 0;
     display: flex;
+    font-size: 2.5rem;
+}
+@media screen and (min-width: 768px) {
+  .start-quiz .are-you-ready {
+    font-size: 3rem;
+  }
 }
 .start-quiz .are-you-ready--active {
   display: none;
@@ -54,21 +64,43 @@
 }
 .question-answer__question {
   color: #020a1a;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-bottom: 30px;
   margin-top: 15px;
 }
+@media screen and (min-width: 768px) {
+  .question-answer__question{
+    font-size: 1.4rem;
+  }
+}
 .question-answer__answer {
   color: #434e66;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   padding-left: 25px;
   line-height: 1.5rem;
   display: inline-block;
   width: 96%;
 }
-
+@media screen and (min-width: 768px) {
+  .question-answer__answer {
+    font-size: 1.2rem;
+  }
+}
 .question-answer .question-answer__button {
   padding: 0 8px;
+  font-size: .6rem;
+}
+@media screen and (min-width: 768px) {
+  .question-answer .question-answer__button {
+    font-size: .75rem;
+  }
+}
+.button-answer{
+  display: flex;
+  margin-top: 10px;
+}
+.button-check {
+  background: #7ed7ac !important;
 }
 /*Third Section*/
 .button-finish .button-finish__bg {
@@ -88,13 +120,11 @@
   left: 0px;
   bottom: 0px;
 }
-.footer-container {
+.footer__container {
   background: #020a1a;
   padding: 15px 0;
   display: flex;
   justify-content: center;
-}
-.footer-text {
   color: #fff;
   font-size: 12px;
 }
