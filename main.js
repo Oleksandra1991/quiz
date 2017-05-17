@@ -3,7 +3,7 @@ var footer = document.getElementsByClassName('footer')[0];
 var questions = document.getElementsByClassName('questions')[0];
 var areYouReady = document.getElementsByClassName('are-you-ready')[0];
 var textBubble = document.getElementsByClassName('text-bubble')[0];
-var finishButton = document.getElementById('finishButton');
+var finishButton = document.getElementsByClassName('button-finish')[0];
 
 
 startButton.addEventListener('click', function() {
@@ -18,12 +18,12 @@ startButton.addEventListener('click', function() {
 fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811ad96a0567648ff858b4f14d0096ba241f28ef/quiz-data.json')
   .then(data => data.json())
   .then(function(data){
-    console.log(data)
+    // console.log(data)
     var letters = "ABCD";
     var isChosen = [];
 
     for (let i=0; i < data.questions.length; i++) {
-      console.log(data.questions[i]);
+      // console.log(data.questions[i]);
       var questionAnswer = document.getElementById('question-answer');
       var quiz = document.createElement('div');
       questionAnswer.appendChild(quiz);
@@ -32,7 +32,7 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
 
 
       for (let j=0; j < data.questions[i].answers.length; j++) {
-        console.log(data.questions[i].answers[j]);
+        // console.log(data.questions[i].answers[j]);
 
         var buttonAnswer = document.createElement('div');
         quiz.appendChild(buttonAnswer);
@@ -57,9 +57,37 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
         answer.innerHTML += data.questions[i].answers[j].answer;
       }
     }
-    finishButton.addEventListener('click', function(){
+    finishButton.addEventListener('click', function(event){
+      var goodAnswers = 0;
+      var badAnswers = 0;
       for (let i = 0; i < data.questions.length; i++) {
-        data.questions[i].answers[isChosen[i]].correct;
+
+        if (typeof(data.questions[i].answers[isChosen[i]]) !== 'undefined'  &&  data.questions[i].answers[isChosen[i]].correct) {
+          goodAnswers++;
+        } else {
+          badAnswers++;
+          if (typeof(data.questions[i].answers[isChosen[i]]) !== 'undefined'){
+
+            // var wrongAnswer = document.querySelectorsAll('.button-check:nth-child(2)');
+            // console.log(wrongAnswer);
+            // wrongAnswer.className += 'button-check--wrong';
+          }
+        }
       }
+      finishButton.classList.toggle('button-finish--disappear');
+      var finishQuiz = document.getElementsByClassName('finish-quiz')[0];
+      var result = document.createElement('div');
+      finishQuiz.appendChild(result);
+      result.className += 'result'
+      var goodResult =  document.createElement('div');
+      var badResult =  document.createElement('div');
+      result.appendChild(goodResult);
+      result.appendChild(badResult);
+      goodResult.className += 'result__good';
+      badResult.className += 'result__bad';
+      goodResult.innerHTML += 'Prawidłowe odpowiedzi:' + ' ' + goodAnswers;
+      badResult.innerHTML += 'Nieprawidłowe odpowiedzi:' + ' ' + badAnswers;
+
     })
+
   })

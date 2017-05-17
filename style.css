@@ -64,7 +64,6 @@
 }
 .question-answer__question {
   color: #020a1a;
-  font-size: 1rem;
   margin-bottom: 30px;
   margin-top: 15px;
 }
@@ -102,17 +101,38 @@
 .button-check {
   background: #7ed7ac !important;
 }
+.button-check--wrong {
+  background: #ff796b !important;
+}
 /*Third Section*/
-.button-finish .button-finish__bg {
+.finish-quiz .button-finish {
   display: none;
+}
+.finish-quiz .button-finish--active {
+  display: block;
   width: 48%;
   margin: 0 auto;
   margin-bottom: 20px;
 }
-.button-finish .button-finish--active {
-  display: block;
+.finish-quiz .button-finish--disappear {
+ display: none;
 }
-
+.result {
+  width: 60%;
+  margin: 40px auto;
+  line-height: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .result {
+    font-size: 1.8rem;
+  }
+}
+.result__good {
+  color: #7ed7ac;
+}
+.result__bad {
+  color: #ff796b;
+}
 /*Footer*/
 .footer {
   position: fixed;
