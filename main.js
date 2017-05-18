@@ -1,18 +1,18 @@
-var startButton = document.getElementById('startButton');
+var startButton = document.getElementsByClassName('start-quiz__button')[0];
 var footer = document.getElementsByClassName('footer')[0];
 var questions = document.getElementsByClassName('questions')[0];
-var areYouReady = document.getElementsByClassName('are-you-ready')[0];
-var textBubble = document.getElementsByClassName('text-bubble')[0];
-var finishButton = document.getElementsByClassName('button-finish')[0];
+var areYouReady = document.getElementsByClassName('start-quiz__header')[0];
+var textBubble = document.getElementsByClassName('main-header__text-bubble')[0];
+var finishButton = document.getElementsByClassName('finish-quiz__button')[0];
 
 
 startButton.addEventListener('click', function() {
-  startButton.classList.toggle('start-button-disappear');
+  startButton.classList.toggle('start-quiz__button--disappear');
   footer.classList.toggle('footer--active');
   questions.classList.toggle('questions--active');
-  areYouReady.classList.toggle('are-you-ready--active');
-  textBubble.classList.toggle('text-bubble--active');
-  finishButton.classList.toggle('button-finish--active');
+  areYouReady.classList.toggle('start-quiz__header--active');
+  textBubble.classList.toggle('main-header__text-bubble--active');
+  finishButton.classList.toggle('finish-quiz__button--active');
 });
 
 fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811ad96a0567648ff858b4f14d0096ba241f28ef/quiz-data.json')
@@ -24,10 +24,10 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
 
     for (let i=0; i < data.questions.length; i++) {
       // console.log(data.questions[i]);
-      var questionAnswer = document.getElementById('question-answer');
+      var questionAnswer = document.getElementsByClassName('questions__answers')[0];
       var quiz = document.createElement('div');
       questionAnswer.appendChild(quiz);
-      quiz.className += 'question-answer__question';
+      quiz.className += 'questions__question';
       quiz.innerHTML += data.questions[i].question;
 
 
@@ -36,24 +36,24 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
 
         var buttonAnswer = document.createElement('div');
         quiz.appendChild(buttonAnswer);
-        buttonAnswer.className += "button-answer";
+        buttonAnswer.className += "questions__button-answer";
 
         var button = document.createElement('button');
         buttonAnswer.appendChild(button);
-        button.className += 'sg-button-secondary sg-button-secondary--small sg-button-secondary--dark-inverse question-answer__button';
+        button.className += 'sg-button-secondary sg-button-secondary--small sg-button-secondary--dark-inverse questions__button';
         button.innerHTML += letters[j];
         button.addEventListener('click', function(event){
           if (isChosen[i]) {
             return;
           } else {
-          event.target.classList.toggle('button-check');
+          event.target.classList.toggle('questions__button--check');
           isChosen[i] = j;
         }
         });
 
         var answer = document.createElement('div');
         buttonAnswer.appendChild(answer);
-        answer.className += 'question-answer__answer';
+        answer.className += 'questions__answer';
         answer.innerHTML += data.questions[i].answers[j].answer;
       }
     }
@@ -68,13 +68,15 @@ fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811a
           badAnswers++;
           if (typeof(data.questions[i].answers[isChosen[i]]) !== 'undefined'){
 
-            // var wrongAnswer = document.querySelectorsAll('.button-check:nth-child(2)');
-            // console.log(wrongAnswer);
-            // wrongAnswer.className += 'button-check--wrong';
+            var wrongAnswer = document.querySelector('.questions__question:nth-of-type(' + (i+1) + ')' + ' .questions__button-answer:nth-of-type(' + (isChosen[i] +1) + ')' + ' .questions__button') ;
+            console.log(wrongAnswer);
+            console.log(i);
+            console.log(isChosen[i]);
+            wrongAnswer.className += ' questions__button--wrong';
           }
         }
       }
-      finishButton.classList.toggle('button-finish--disappear');
+      finishButton.classList.toggle('finish-quiz__button--disappear');
       var finishQuiz = document.getElementsByClassName('finish-quiz')[0];
       var result = document.createElement('div');
       finishQuiz.appendChild(result);

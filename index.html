@@ -11,45 +11,41 @@
 
 <body>
     <header class="main-header">
-        <div class="title">
-            <h2 class="sg-text-bit">Quiz</h2>
+        <div class="main-header__title">
+            <h2 class="sg-text-bit main-header__header">Quiz</h2>
             <svg class="sg-icon sg-icon--mustard sg-icon--x64">
             <use xlink:href="#icon-cup"></use>
         </svg>
         </div>
-        <div class="sg-bubble text-bubble">
-          Sprawdź swoją wiedzę odpowiadając na 9 pytań jednokrotnego wyboru :)
+        <div class="sg-bubble main-header__text-bubble">
+            Sprawdź swoją wiedzę odpowiadając na 9 pytań jednokrotnego wyboru :)
         </div>
     </header>
     <main>
-        <article>
+        <section>
             <section class="start-quiz">
-                <h2 class="sg-header-primary are-you-ready">
+                <h2 class="sg-header-primary start-quiz__header">
                   Jesteś gotów?
                 </h2>
-                <div class="start-button">
-                    <button id="startButton" class="sg-button-primary sg-button-primary--full-width">
+                <div class="start-quiz__button">
+                    <button class="sg-button-primary sg-button-primary--full-width">
                       Start
                     </button>
                 </div>
             </section>
             <section class="questions">
-              <div class="question-answer" id="question-answer">
-              </div>
+                <div class="questions__answers">
+                </div>
             </section>
             <section class="finish-quiz">
-
-                <button id="finishButton" class="sg-button-primary sg-button-primary--full-width button-finish">
+                <button class="sg-button-primary sg-button-primary--full-width finish-quiz__button">
                   Zakończ
                 </button>
-
             </section>
-        </article>
+        </section>
     </main>
     <footer class="footer">
-        <div class="footer__container">
-          Copyright &copy; Aleksandra Kurowska
-        </div>
+        Copyright &copy; Aleksandra Kurowska
     </footer>
 
     <script src="https://styleguide.brainly.com/images/icons-5459066133.js"></script>
