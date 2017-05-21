@@ -51,6 +51,19 @@
 .start-quiz__button--disappear {
   display: none !important;
 }
+/*Countdown Time*/
+.start-quiz__countdownTime {
+  display: none;
+}
+.start-quiz__countdownTime--active {
+  color: #ff796b;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
 /*Second Section*/
 .questions {
   display: none;
