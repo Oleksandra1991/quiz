@@ -22,10 +22,9 @@
                 initCountdown();
             });
         }
-        bindStartButton();
 
         function initCountdown() {
-            var addedTime = new Date(new Date().getTime() + 180000).getTime();
+            var addedTime = new Date().getTime() + 180000;
             var now = new Date().getTime();
             distance = addedTime - now;
             var minutes = Math.floor(distance / (1000 * 60));
@@ -75,7 +74,7 @@
                             userAnswers[i] = j;
                         }
                     });
-                    var answer = createDiv('questions__answer', data.questions[i].answers[j].answer, buttonAnswer);
+                    createDiv('questions__answer', data.questions[i].answers[j].answer, buttonAnswer);
                 }
             }
         }
@@ -104,14 +103,16 @@
             }
 
             finishButton.classList.toggle('hide');
-            var finishQuiz = document.getElementsByClassName('finish-quiz')[0];
-            var result = createDiv('result', '', finishQuiz);
-            var goodResult = createDiv('result__good', 'Prawidłowe odpowiedzi:' + ' ' + goodAnswers, result);
-            var badResult = createDiv('result__bad', 'Nieprawidłowe odpowiedzi:' + ' ' + badAnswers, result);
-
             clearInterval(intervalId);
             document.getElementsByClassName('start-quiz__countdownTime--active')[0].innerHTML = 'Test został zakończony';
+            
+            var finishQuiz = document.getElementsByClassName('finish-quiz')[0];
+            var result = createDiv('result', '', finishQuiz);
+            createDiv('result__good', 'Prawidłowe odpowiedzi:' + ' ' + goodAnswers, result);
+            createDiv('result__bad', 'Nieprawidłowe odpowiedzi:' + ' ' + badAnswers, result);
         }
+
+        bindStartButton();
 
         fetch('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f10d065985257416/raw/811ad96a0567648ff858b4f14d0096ba241f28ef/quiz-data.json')
             .then(data => data.json())
